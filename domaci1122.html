@@ -1,0 +1,46 @@
+<script>
+class Student {
+    constructor (ime, adresa, telefon, kurs) {
+        this.ime = ime;
+        this.adresa = adresa;
+        this.telefon = telefon;
+        this.kurs = kurs;
+    }
+    getinfo () {
+      document.writeln(`<p>ime:${this.ime}<br>adresa:${this.adresa}<br>telefon:${this.telefon}<br>kurs:${this.kurs}<br></p>`);
+    }
+  }
+
+    
+  function splitArray(arr, len) {
+    var arrPart = [], i = 0, n = arr.length;
+    while (i < n) {
+      arrPart.push(arr.slice(i, i += len));
+    }
+    return arrPart;
+  }
+
+
+  async function students() {
+    let response = await fetch('https://v-dresevic.github.io/Advanced-JavaScript-Programming/data/students.txt')
+  .then(response => response.text())
+  .then(data => {
+
+        arr = data.split('\n'); 
+
+        const newArr = splitArray(arr, 4); 
+
+
+        
+        student1 = new Student(newArr[0][0], newArr[0][1], newArr[0][2], newArr[0][3]);
+        student1.getinfo();
+        student2 = new Student(newArr[1][0], newArr[1][1], newArr[1][2], newArr[1][3]);
+        student2.getinfo();
+        student3 = new Student(newArr[2][0], newArr[2][1], newArr[2][2], newArr[2][3]);
+        student2.getinfo();
+        student4 = new Student(newArr[3][0], newArr[3][1], newArr[3][2], newArr[3][3]);
+        student4.getinfo();  
+  });
+  }
+  students();
+</script>
